@@ -1,0 +1,19 @@
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.letter {
+    display: inline-block;
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.letter:hover {
+    animation: bounce 0.5s infinite;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}

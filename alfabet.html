@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
+  <style>
+      body {
+          display: flex;
+          min-height: 100vh;
+          align-items: center;
+          justify-content: center;
+          background-color: #f8f9fa; /* Warna latar belakang halaman */
+      }
+
+      .center-menu {
+          text-align: center;
+      }
+      
+
+    .row img {
+      max-height: 10vw; /* Set the max height of the images */
+      width: auto; /* Maintain image aspect ratio */
+    }
+    h1{
+      font-family:'Concert One', 'Arial Narrow', Arial, sans-serif;
+      font-size: 20vw;
+    }
+    .btn{
+      cursor: pointer;
+    }
+
+    /* Optional styling for cursor pointer on carousel */
+    #carouselExampleControls {
+      cursor: pointer;
+    }
+    *{
+      /* border: 1px solid black; */
+    }
+  </style>
+  <title>Alfabet Seru</title>
+</head>
+<body>
+    <div class="container center-menu">
+        <div class="row menu">
+          <div class="btn col prev"><img src="/assets/image/kiri.png" alt=""></div>
+          <div class="col">
+            <h1 class="alphabet" id="alphabet">A</h1>
+          </div>
+          <div class="btn col next"><img src="/assets/image/kanan.png" alt=""></div>
+        </div>
+        <div class="row">
+          <div class="btn col play">
+            <audio controls autoplay id="audio" hidden>
+              <source src="/assets/audio/1.wav" type="audio/mp3">
+            </audio>
+            <!-- <img src="/assets/image/play.png" alt=""> -->
+          </div>
+        </div>
+        <div class="row">
+          <div class="col"><a class="btn btn-outline-primary mt-3" href="/index.html">Kembali</a></div>
+        </div>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+  var carousel = $('.menu');
+  var heading = $('#carouselHeading');
+  var text = $('#alphabet');
+
+  var audio =document.getElementById('audio');
+  audio.src = '/assets/audio/A.mp3';
+  audio.play();
+
+  // Event listener for manual slide change
+  carousel.on('click', '.prev', function() {
+    updateContent(-1);
+  });
+
+  carousel.on('click', '.next', function() {
+    console.log(text.text());
+    updateContent(1);
+  });
+
+  // Event listener for when the slide changes
+  carousel.on('slid.bs.carousel', function() {
+    updateContent();
+  });
+
+  
+  // Function to update heading and text based on active slide
+  function updateContent(indexSlide = 0 ) {
+  
+  let slideTexts = [
+    {alphabet:'A', audio:'/assets/audio/A.mp3'},
+    {alphabet:'B', audio:'/assets/audio/B.mp3'},
+    {alphabet:'C', audio:'/assets/audio/C.mp3'},
+    {alphabet:'D', audio:'/assets/audio/D.mp3'},
+    {alphabet:'E', audio:'/assets/audio/E.mp3'},
+    {alphabet:'F', audio:'/assets/audio/F.mp3'},
+    {alphabet:'G', audio:'/assets/audio/G.mp3'},
+    {alphabet:'H', audio:'/assets/audio/H.mp3'},
+    {alphabet:'I', audio:'/assets/audio/I.mp3'},
+    {alphabet:'J', audio:'/assets/audio/J.mp3'},
+    {alphabet:'K', audio:'/assets/audio/K.mp3'},
+    {alphabet:'L', audio:'/assets/audio/L.mp3'},
+    {alphabet:'M', audio:'/assets/audio/M.mp3'},
+    {alphabet:'N', audio:'/assets/audio/N.mp3'},
+    {alphabet:'O', audio:'/assets/audio/O.mp3'},
+    {alphabet:'P', audio:'/assets/audio/P.mp3'},
+    {alphabet:'Q', audio:'/assets/audio/Q.mp3'},
+    {alphabet:'R', audio:'/assets/audio/R.mp3'},
+    {alphabet:'S', audio:'/assets/audio/S.mp3'},
+    {alphabet:'T', audio:'/assets/audio/T.mp3'},
+    {alphabet:'U', audio:'/assets/audio/U.mp3'},
+    {alphabet:'V', audio:'/assets/audio/V.mp3'},
+    {alphabet:'W', audio:'/assets/audio/W.mp3'},
+    {alphabet:'X', audio:'/assets/audio/X.mp3'},
+    {alphabet:'Y', audio:'/assets/audio/Y.mp3'},
+    {alphabet:'Z', audio:'/assets/audio/Z.mp3'}
+  ];
+  var alphabet = $('#alphabet').text();
+    // console.log(alphabet);
+  var index = slideTexts.findIndex(function(obj) {
+    return obj.alphabet === alphabet;
+  });
+
+  index += indexSlide;
+  if (index > 25 || index < 0) {
+    index = 0;
+  }
+  console.log(index);
+    
+    text.text(slideTexts[index].alphabet);
+
+    // Change the audio source and autoplay
+    audio.src = slideTexts[index].audio;
+    audio.play();
+
+    // Generate random color and set it to the heading
+    var randomColor = getRandomColor();
+    text.css('color', randomColor);
+  }
+
+  // Function to generate random color
+// Function to generate random color
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+ 
+</script>
+

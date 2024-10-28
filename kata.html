@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
+  <style>
+      body {
+          display: flex;
+          min-height: 100vh;
+          align-items: center;
+          justify-content: center;
+          background-color: #f8f9fa; /* Warna latar belakang halaman */
+      }
+
+      .center-menu {
+            height: 50vh;
+            text-align: center;
+      }
+      
+
+    .row img {
+      max-height: 10vw; /* Set the max height of the images */
+      width: auto; /* Maintain image aspect ratio */
+    }
+    h6{
+      font-family:'Concert One', 'Arial Narrow', Arial, sans-serif;
+      font-size: 5vw;
+    }
+    .btn{
+      cursor: pointer;
+    }
+
+    /* Optional styling for cursor pointer on carousel */
+    #image {
+        max-width: 100%;
+        min-height: 15vw;
+        height: auto;
+        display: block;
+        margin: 0 auto;        
+    }
+    *{
+      /* border: 1px solid black; */
+    }
+  </style>
+  <title>Alfabet Seru</title>
+</head>
+<body>
+    <div class="container center-menu">
+        <div class="row menu">
+          <div class="btn col prev"><img src="/assets/image/kiri.png" alt=""></div>
+          <div class="col">
+            <h6 class="alphabet" id="alphabet">Anggur</h6>
+            <img src="/assets/image/Anggur.png" id="image" alt="">
+          </div>
+          <div class="btn col next"><img src="/assets/image/kanan.png" alt=""></div>
+        </div>
+        <div class="row">
+          <div class="btn col play">
+            <audio controls autoplay id="audio" hidden>
+              <source src="/assets/audio/1.wav" type="audio/mp3">
+            </audio>
+            <!-- <img src="/assets/image/play.png" alt=""> -->
+          </div>
+        </div>
+        <div class="row">
+          <div class="col"><a class="btn btn-outline-primary mt-3" href="/index.html">Kembali</a></div>
+        </div>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+  var carousel = $('.menu');
+  var image = document.getElementById('image');
+  var text = $('#alphabet');
+  var audio = document.getElementById('audio');
+  audio.src = '/assets/audio/Anggur.mp3';
+  audio.play();
+
+  // Event listener for manual slide change
+  carousel.on('click', '.prev', function() {
+    updateContent(-1);
+  });
+
+  carousel.on('click', '.next', function() {
+    console.log(text.text());
+    updateContent(1);
+  });
+
+
+
+  
+  // Function to update heading and text based on active slide
+  function updateContent(indexSlide = 0 ) {
+  
+  let slideTexts = [
+    {image:'/assets/image/Apel.png',alphabet:'Apel', audio:'/assets/audio/Apel.mp3'},
+    {image:'/assets/image/Anggur.png',alphabet:'Anggur', audio:'/assets/audio/Anggur.mp3'},
+    {image:'/assets/image/Buku.png',alphabet:'Buku', audio:'/assets/audio/Buku.mp3'},
+    {image:'/assets/image/Bola.png',alphabet:'Bola', audio:'/assets/audio/Bola.mp3'},
+    {image:'/assets/image/Cokelat.png',alphabet:'Cokelat', audio:'/assets/audio/Cokelat.mp3'},
+    {image:'/assets/image/Ceri.png',alphabet:'Ceri', audio:'/assets/audio/Ceri.mp3'},
+    {image:'/assets/image/Domba.png',alphabet:'Domba', audio:'/assets/audio/Domba.mp3'},
+    {image:'/assets/image/Donat.png',alphabet:'Donat', audio:'/assets/audio/Donat.mp3'},
+    {image:'/assets/image/Elang.png',alphabet:'Elang', audio:'/assets/audio/Elang.mp3'},
+    {image:'/assets/image/Es krim.png',alphabet:'Es krim', audio:'/assets/audio/Es krim.mp3'},
+    {image:'/assets/image/Flamingo.png',alphabet:'Flamingo', audio:'/assets/audio/Flamingo.mp3'},
+    {image:'/assets/image/Fanta.png',alphabet:'Fanta', audio:'/assets/audio/Fanta.mp3'},
+    {image:'/assets/image/Gajah.png',alphabet:'Gajah', audio:'/assets/audio/Gajah.mp3'},
+    {image:'/assets/image/Gitar.png',alphabet:'Gitar', audio:'/assets/audio/Gitar.mp3'},
+    {image:'/assets/image/Harimau.png',alphabet:'Harimau', audio:'/assets/audio/Harimau.mp3'},
+    {image:'/assets/image/Helikopter.png',alphabet:'Helikopter', audio:'/assets/audio/Helikopter.mp3'},
+    {image:'/assets/image/Ikan.png',alphabet:'Ikan', audio:'/assets/audio/Ikan.mp3'},
+    {image:'/assets/image/Istana.png',alphabet:'Istana', audio:'/assets/audio/Istana.mp3'},
+    {image:'/assets/image/Jerapah.png',alphabet:'Jerapah', audio:'/assets/audio/Jerapah.mp3'},
+    {image:'/assets/image/Jagung.png', alphabet:'Jagung', audio:'/assets/audio/Jagung.mp3'},
+    {image:'/assets/image/Kelinci.png',alphabet:'Kelinci', audio:'/assets/audio/Kelinci.mp3'},
+    {image:'/assets/image/Kucing.png',alphabet:'Kucing', audio:'/assets/audio/Kucing.mp3'},
+    {image:'/assets/image/Lumba-lumba.png',alphabet:'Lumba-lumba', audio:'/assets/audio/Lumba-lumba.mp3'},
+    {image:'/assets/image/Lampu.png',alphabet:'Lampu', audio:'/assets/audio/Lampu.mp3'},
+    {image:'/assets/image/Merak.png',alphabet:'Merak', audio:'/assets/audio/Merak.mp3'},
+    {image:'/assets/image/Mangga.png',alphabet:'Mangga', audio:'/assets/audio/Mangga.mp3'},
+    {image:'/assets/image/Nanas.png',alphabet:'Nanas', audio:'/assets/audio/Nanas.mp3'},
+    {image:'/assets/image/Nampan.png',alphabet:'Nampan', audio:'/assets/audio/Mangga.mp3'},
+    {image:'/assets/image/Orangutan.png',alphabet:'Orangutan', audio:'/assets/audio/Orangutan.mp3'},
+    {image:'/assets/image/Obor.png',alphabet:'Obor', audio:'/assets/audio/Obor.mp3'},
+    {image:'/assets/image/Penguin.png',alphabet:'Penguin', audio:'/assets/audio/Penguin.mp3'},
+    {image:'/assets/image/Panda.png',alphabet:'Panda', audio:'/assets/audio/Panda.mp3'},
+    {image:'/assets/image/Qari.png',alphabet:'Qari', audio:'/assets/audio/Qari.mp3'},
+    {image:'/assets/image/Quran.png',alphabet:'Quran', audio:'/assets/audio/Quran.mp3'},
+    {image:'/assets/image/Rusa.png',alphabet:'Rusa', audio:'/assets/audio/Rusa.mp3'},
+    {image:'/assets/image/Roket.png',alphabet:'Roket', audio:'/assets/audio/Roket.mp3'},
+    {image:'/assets/image/Semangka.png',alphabet:'Semangka', audio:'/assets/audio/Semangka.mp3'},
+    {image:'/assets/image/Sapi.png',alphabet:'Sapi', audio:'/assets/audio/Sapi.mp3'},
+    {image:'/assets/image/Tomat.png',alphabet:'Tomat', audio:'/assets/audio/Tomat.mp3'},
+    {image:'/assets/image/Tupai.png',alphabet:'Tupai', audio:'/assets/audio/Tupai.mp3'},
+    {image:'/assets/image/Ular.png',alphabet:'Ular', audio:'/assets/audio/Ular.mp3'},
+    {image:'/assets/image/Unta.png',alphabet:'Unta', audio:'/assets/audio/Unta.mp3'},
+    {image:'/assets/image/Vase.png',alphabet:'Vase', audio:'/assets/audio/Vase.mp3'},
+    {image:'/assets/image/Vespa.png',alphabet:'Vespa', audio:'/assets/audio/Vespa.mp3'},
+    {image:'/assets/image/Wayang.png',alphabet:'Wayang', audio:'/assets/audio/Wayang.mp3'},
+    {image:'/assets/image/Walrus.png',alphabet:'Walrus', audio:'/assets/audio/Walrus.mp3'},
+    {image:'/assets/image/Xylofon.png',alphabet:'Xylofon', audio:'/assets/audio/Xylofon.mp3'},
+    {image:'/assets/image/X-ray.png',alphabet:'X-ray', audio:'/assets/audio/X-ray.mp3'},
+    {image:'/assets/image/Yoyo.png',alphabet:'Yoyo', audio:'/assets/audio/Yoyo.mp3'},
+    {image:'/assets/image/Yogurt.png',alphabet:'Yogurt', audio:'/assets/audio/Yogurt.mp3'},
+    {image:'/assets/image/Zebra.png',alphabet:'Zebra', audio:'/assets/audio/Zebra.mp3'},
+    {image:'/assets/image/Zaitun.png',alphabet:'Zaitun', audio:'/assets/audio/Zaitun.mp3'}
+  ];
+  var alphabet = $('#alphabet').text();
+    // console.log(alphabet);
+  var index = slideTexts.findIndex(function(obj) {
+    return getFirstLetter(obj.alphabet) === getFirstLetter(alphabet);
+  });
+
+  index += indexSlide;
+  if (index > 25 || index < 0) {
+    index = 0;
+  }
+  console.log(index);
+    
+    text.text(slideTexts[index].alphabet);
+    
+    //image 
+    image.src = slideTexts[index].image;
+    // Change the audio source and autoplay
+    audio.src = slideTexts[index].audio;
+    audio.play();
+
+    // Generate random color and set it to the heading
+    var randomColor = getRandomColor();
+    text.css('color', randomColor);
+  }
+
+  // Function to generate random color
+// Function to generate random color
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+  function getFirstLetter(word) {
+    return word.slice(0, 1);
+}
+ 
+</script>
